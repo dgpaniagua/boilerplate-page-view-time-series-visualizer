@@ -20,11 +20,10 @@ def draw_line_plot():
     ax.set_xlabel('Date')
     ax.set_ylabel('Page Views')
     ax.set_title("Daily freeCodeCamp Forum Page Views 5/2016-12/2019")
-    
 
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
-    #return fig
+    return fig
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
@@ -35,14 +34,10 @@ def draw_bar_plot():
     
     # Draw bar plot
     df_bar = pd.pivot_table(df_bar,	values="value",	index="year",	columns="month", aggfunc=np.mean)
-    
-    #print(df_bar)
-
     fig = plt.figure(figsize=(9, 7))
     ax = plt.axes()
     df_bar.plot(kind = "bar", ax=ax)
     fig = ax.get_figure()
-
     ax.set_xlabel("Years")
     ax.set_ylabel("Average Page Views")
 
@@ -61,8 +56,6 @@ def draw_box_plot():
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     df_box["month"] = pd.Categorical(df_box["month"], categories=months, ordered=True)
 
-    #print(df_box)
-
     fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(16, 6))
     sns.boxplot(x="year", y="value", data=df_box, ax = ax1)
     sns.boxplot(x="month", y="value", data=df_box, ax = ax2)
@@ -76,5 +69,3 @@ def draw_box_plot():
     # Save image and return fig (don't change this part)
     fig.savefig('box_plot.png')
     return fig
-
-#draw_box_plot()
